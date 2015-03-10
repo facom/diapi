@@ -1,13 +1,13 @@
 <?php
 if(isset($_GET["en"])){
   $close="The <b style='font-size:2em'>&pi;</b> day is close";
-  $invitation="Join us in <a href='http://astronomia-udea.co' target='_blank'>Medellín to Celebrate Pi</a>";
+  $invitation="Join us in <a href='http://bit.ly/dia-de-pi' target='_blank'>Medellín to Celebrate Pi</a>";
   $arrived="The <b style=font-size:2em>&pi;</b> day has arrived.";
   $flag="es.png";
   $lang="es";
  }else{
   $close="El día de <b style='font-size:2em'>&pi;</b> esta cerca";
-  $invitation="Únete a la <a href='http://astronomia-udea.co' target='_blank'>celebración en Medellín</a>";
+  $invitation="Únete a la <a href='http://bit.ly/dia-de-pi' target='_blank'>celebración en Medellín</a>";
   $arrived="El día de <b style=font-size:2em>&pi;</b> ha llegado.";
   $flag="en.png";
   $lang="en";
