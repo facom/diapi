@@ -60,6 +60,7 @@ td {
 }
 
 #text2 {
+font-size:2em;
 }
 
 .text {
