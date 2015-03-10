@@ -137,10 +137,11 @@ function PlaySound(soundobj){
 $(document).ready(function() {
     
     //*ORIGINAL
+    var fixed=false;
     var piday="14";
     var pimonth="03";
     var piyear="2015";
-    var pihour="09";
+    var pihour="9";
     var pimin="26";
     var pisec="53";
     var picsec="59";
@@ -176,64 +177,72 @@ $(document).ready(function() {
     var minutes=0;
     var day=0;
     
-    msecs=setInterval( function() {
-	mseconds = new Date().getMilliseconds();
-	cseconds=(mseconds+"").substring(0,2);
-	$("#csec").html(( cseconds < 10 ? "0" : "" ) + 
-			cseconds);
-    },1);
-    
-    mins=setInterval( function() {
-	minutes = new Date().getMinutes();
-	$("#min").html(( minutes < 10 ? "0" : "" ) + 
-		       minutes);
-    },10);
-						      
-    hour=setInterval( function() {
-	hours = new Date().getHours();
-	$("#hours").html(hours);
-    }, 10);
-
-    days=setInterval( function() {
-	day = new Date().getUTCDate();
-	$("#day").html(( day < 10 ? "0" : "" ) + day);
-    }, 10);
-
-    months=setInterval( function() {
-	month = new Date().getMonth();
-    }, 10);
-
-    secs=setInterval( function() {
-	seconds = new Date().getSeconds();
-	$("#sec").html(( seconds < 10 ? "0" : "" ) + 
-		       seconds);
-	
-	if((day==piday && 
-	    hours==pihour && minutes==pimin && seconds==pisec) ||
-	   now.getTime()>fecha.getTime()
-	  ){
-	    clearInterval(secs);
-	    clearInterval(msecs);
-	    clearInterval(mins);
-	    clearInterval(hour);
-	    clearInterval(days);
-	    clearInterval(months);
-	    $("#csec").html(picsec);
-	    $("#sec").html(pisec);
-	    $("#min").html(pimin);
-	    $("#hours").html(pihour);
+    if(fixed){
 	    $("#day").html(piday);
 	    $("#year").html(piyear.substr(2,2));
+	    $("#hours").html(pihour);
+	    $("#min").html(pimin);
+	    $("#sec").html(pisec);
+	    $("#csec").html(picsec);
+    }else{
+	msecs=setInterval( function() {
+	    mseconds = new Date().getMilliseconds();
+	    cseconds=(mseconds+"").substring(0,2);
+	    $("#csec").html(( cseconds < 10 ? "0" : "" ) + 
+			    cseconds);
+	},1);
+	
+	mins=setInterval( function() {
+	    minutes = new Date().getMinutes();
+	    $("#min").html(( minutes < 10 ? "0" : "" ) + 
+			   minutes);
+	},10);
+	
+	hour=setInterval( function() {
+	    hours = new Date().getHours();
+	    $("#hours").html(hours);
+	}, 10);
 
-	    $(".number").css("color","yellow");
-	    $(".number").css("font-size","7em");
-	    $("#text1").html("El día de <b style=font-size:2em>&pi;</b> ha llegado");
-	    PlaySound('sound');
-	    $("#text2").html("");
-	}
+	days=setInterval( function() {
+	    day = new Date().getUTCDate();
+	    $("#day").html(( day < 10 ? "0" : "" ) + day);
+	}, 10);
 
-    },10);
+	months=setInterval( function() {
+	    month = new Date().getMonth();
+	}, 10);
 
+	secs=setInterval( function() {
+	    seconds = new Date().getSeconds();
+	    $("#sec").html(( seconds < 10 ? "0" : "" ) + 
+			   seconds);
+	    
+	    if((day==piday && 
+		hours==pihour && minutes==pimin && seconds==pisec) ||
+	       now.getTime()>fecha.getTime()
+	      ){
+		clearInterval(secs);
+		clearInterval(msecs);
+		clearInterval(mins);
+		clearInterval(hour);
+		clearInterval(days);
+		clearInterval(months);
+		$("#csec").html(picsec);
+		$("#sec").html(pisec);
+		$("#min").html(pimin);
+		$("#hours").html(pihour);
+		$("#day").html(piday);
+		$("#year").html(piyear.substr(2,2));
+
+		$(".number").css("color","yellow");
+		$(".number").css("font-size","7em");
+		$("#text1").html("El día de <b style=font-size:2em>&pi;</b> ha llegado");
+		PlaySound('sound');
+		$("#text2").html("");
+	    }
+
+	},10);
+    }
 
 });
 </script>
