@@ -1,3 +1,19 @@
+<?php
+if(isset($_GET["en"])){
+  $close="The <b style='font-size:2em'>&pi;</b> day is close";
+  $invitation="Join us in <a href='http://astronomia-udea.co' target='_blank'>Medellín to Celebrate Pi</a>";
+  $arrived="The <b style=font-size:2em>&pi;</b> day has arrived.";
+  $flag="es.png";
+  $lang="es";
+ }else{
+  $close="El día de <b style='font-size:2em'>&pi;</b> esta cerca";
+  $invitation="Únete a la <a href='http://astronomia-udea.co' target='_blank'>celebración en Medellín</a>";
+  $arrived="El día de <b style=font-size:2em>&pi;</b> ha llegado.";
+  $flag="en.png";
+  $lang="en";
+ }
+
+echo<<<PI
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -120,8 +136,11 @@ body{
 </head>
 
 <body>
+  <div style="position:absolute;right:0px;padding:10px">
+  <a href="?$lang"><img src="$flag"/></a>
+  </div>
   <center id="text1" class="text">
-    El día de <b style="font-size:2em">&pi;</b> esta cerca
+    $close
   </center>
     
     <audio preload id="sound">
@@ -184,6 +203,12 @@ $(document).ready(function() {
 	    $("#min").html(pimin);
 	    $("#sec").html(pisec);
 	    $("#csec").html(picsec);
+
+	    $("#text1").html("$arrived");
+	    $(".number").css("color","yellow");
+	    $(".number").css("font-size","7em");
+	    PlaySound('sound');
+	    $("#text2").html("");
     }else{
 	msecs=setInterval( function() {
 	    mseconds = new Date().getMilliseconds();
@@ -236,7 +261,7 @@ $(document).ready(function() {
 
 		$(".number").css("color","yellow");
 		$(".number").css("font-size","7em");
-		$("#text1").html("El día de <b style=font-size:2em>&pi;</b> ha llegado");
+		$("#text1").html("$arrived");
 		PlaySound('sound');
 		$("#text2").html("");
 	    }
@@ -272,7 +297,9 @@ $(document).ready(function() {
 </center>
 
 <center id="text2" class="text">
-    Únete a la <a href="http://astronomia-udea.co" target="_blank">celebración en Medellín</a>
+    $invitation
 </center>
 </body>
 </html>
+PI;
+?>
