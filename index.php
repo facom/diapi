@@ -230,7 +230,7 @@ $(document).ready(function() {
 	}, 10);
 
 	days=setInterval( function() {
-	    day = new Date().getUTCDate();
+	    day = new Date().getDate();
 	    $("#day").html(( day < 10 ? "0" : "" ) + day);
 	}, 10);
 
