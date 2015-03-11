@@ -3,12 +3,14 @@ if(isset($_GET["en"])){
   $close="The <b style='font-size:2em'>&pi;</b> day is close";
   $invitation="Join us in <a href='http://bit.ly/dia-de-pi' target='_blank'>Medellín to Celebrate Pi</a>";
   $arrived="The <b style=font-size:2em>&pi;</b> day has arrived.";
+  $credits="You're listening <a href='https://www.youtube.com/watch?v=wM-x3pUcdeo'><i>the song of pi</i></a>";
   $flag="es.png";
   $lang="es";
  }else{
   $close="El día de <b style='font-size:2em'>&pi;</b> esta cerca";
   $invitation="Únete a la <a href='http://bit.ly/dia-de-pi' target='_blank'>celebración en Medellín</a>";
   $arrived="El día de <b style=font-size:2em>&pi;</b> ha llegado.";
+  $credits="Estas escuchando <a href='https://www.youtube.com/watch?v=wM-x3pUcdeo'><i>the song of pi</i></a>";
   $flag="en.png";
   $lang="en";
  }
@@ -165,23 +167,13 @@ $(document).ready(function() {
     var pimin="26";
     var pisec="53";
     var picsec="59";
-    //*/
-    /*
-    var piday="10";
-    var pimonth="03";
-    var piyear="2015";
-    var pihour="03";
-    var pimin="28";
-    var pisec="00";
-    var picsec="00";
-    */
 
     var newDate = new Date();
     newDate.setDate(newDate.getDate());
 
     var now=new Date(newDate.getFullYear(),newDate.getMonth(),newDate.getUTCDate(),
 		     newDate.getHours(),newDate.getMinutes());
-    var fechastr=piyear+"-"+pimonth+"-"+piday+"T"+pihour+":"+pimin+":"+pisec+"."+picsec+"-05:00";
+    var fechastr=piyear+"-"+pimonth+"-"+piday+"T"+( pihour < 10 ? "0" : "" )+pihour+":"+pimin+":"+pisec+"."+picsec+"-05:00";
     var fecha=new Date(fechastr)
     //alert(now+","+fecha+","+now.getTime()+","+fecha.getTime());
 
@@ -206,10 +198,10 @@ $(document).ready(function() {
 	    $("#csec").html(picsec);
 
 	    $("#text1").html("$arrived");
+	    $("#text2").html("$credits");
 	    $(".number").css("color","yellow");
 	    $(".number").css("font-size","7em");
 	    PlaySound('sound');
-	    $("#text2").html("");
     }else{
 	msecs=setInterval( function() {
 	    mseconds = new Date().getMilliseconds();
@@ -263,8 +255,8 @@ $(document).ready(function() {
 		$(".number").css("color","yellow");
 		$(".number").css("font-size","7em");
 		$("#text1").html("$arrived");
+		$("#text2").html("$credits");
 		PlaySound('sound');
-		$("#text2").html("");
 	    }
 
 	},10);
