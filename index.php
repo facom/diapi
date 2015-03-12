@@ -1,4 +1,7 @@
 <?php
+if(isset($_GET["fixed"])){
+  $fixed=1;
+}else{$fixed=0;}
 if(isset($_GET["en"])){
   $close="The <b style='font-size:2em'>&pi;</b> day is close";
   $invitation="Join us in <a href='http://bit.ly/dia-de-pi' target='_blank'>Medellín to Celebrate Pi</a>";
@@ -158,8 +161,7 @@ function PlaySound(soundobj){
 
 $(document).ready(function() {
     
-    //*ORIGINAL
-    var fixed=false;
+    var fixed="$fixed";
     var piday="14";
     var pimonth="03";
     var piyear="2015";
@@ -189,7 +191,7 @@ $(document).ready(function() {
     var minutes=0;
     var day=0;
     
-    if(fixed){
+    if(fixed=="1"){
 	    $("#day").html(piday);
 	    $("#year").html(piyear.substr(2,2));
 	    $("#hours").html(pihour);
